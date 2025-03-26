@@ -1,0 +1,21 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Conda environment directories
+protein-env/      
+*.yml           
+
+# Flask specific
+instance/
+*.db
+
+# IDE files 
+.vscode/
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store       
