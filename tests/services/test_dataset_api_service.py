@@ -34,13 +34,10 @@ def test_fetch_ds_ids(mock_api_service, mock_file_reader):
     assert ds_ids == ["12345", "67890"]
 
 
-@patch("app.controllers.pubmed_ds_controller.PubmedDSController._get_ds_ids")
 @patch("app.services.ApiService")
 @patch("concurrent.futures.ThreadPoolExecutor")
-def test_fetch_ds_details(mock_executor, mock_api_service, mock_get_ds_ids):
+def test_fetch_ds_details(mock_executor, mock_api_service):
     """Test that PubmedDSController fetches and processes data in batches."""
-    # Mock _get_ds_ids to return specific dataset IDs
-    mock_get_ds_ids.return_value = ["12345", "67890"]
 
     # Prepare the mock API response
     mock_api_service.get.return_value = {
@@ -97,3 +94,26 @@ def test_fetch_ds_details(mock_executor, mock_api_service, mock_get_ds_ids):
     assert "67890" in ds_data, "Dataset 67890 not found"
     assert ds_data["12345"]["title"] == "Dataset 1", "Incorrect data for 12345"
     assert ds_data["67890"]["summary"] == "Summary 2", "Incorrect data for 67890"
+
+
+@patch("app.services.ApiService")
+def test_fetch_ds_ids_empty(mock_api_service):
+    """Test that fetch_ds_ids handles an empty input list correctly."""
+    api_service = DatasetApiService(mock_api_service)
+    assert api_service.fetch_ds_ids([]) == []
+
+
+@patch("app.services.ApiService")
+def test_fetch_ds_details_empty(mock_api_service):
+    """Test that fetch_ds_details handles an empty input list correctly."""
+    api_service = DatasetApiService(mock_api_service)
+    assert api_service.fetch_ds_details([]) == {}
+
+
+@patch("app.services.ApiService")
+def test_fetch_ds_ids_api_failure(mock_api_service):
+    """Test fetch_ds_ids gracefully handles an API failure."""
+    mock_api_service.get.side_effect = Exception("API Error")
+    api_service = DatasetApiService(mock_api_service)
+    ds_ids = api_service.fetch_ds_ids(["12345", "67890"])
+    assert ds_ids == []  # Ensure it returns an empty list on failure

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Clustering Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <div>
+                <div class="dashboard-title">Dataset Clustering Visualization</div>
+                <div class="dashboard-subtitle">Clustering and Dimensionality Reduction of Datasets</div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+        </div>
+        
+        <div class="plot-container">
+            <iframe src="{{ dash_url }}" class="dash-frame"></iframe>
+        </div> 
+        <div class="plot-description">
+            Visualization of clustered datasets based on their textual descriptions and TF-IDF representations. Data points are color-coded according to their clusters, providing insights into dataset similarities. The data has been reduced to 2D for clarity while preserving meaningful structure. Click on any point to explore detailed information about the dataset.
+        </div>
+    </div>
+</body>
+</html>
