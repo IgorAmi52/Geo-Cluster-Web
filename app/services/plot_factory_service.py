@@ -53,7 +53,6 @@ class PlotFactory:
         else:
             normalized_labels = 'blue'
 
-        # Create scatter plot
         scatter = go.Scatter(
             x=x_coords,
             y=y_coords,
@@ -69,18 +68,15 @@ class PlotFactory:
             hovertemplate='Name: %{customdata[0]}<br>Dataset ID: %{customdata[1]}<extra></extra>'
         )
 
-        # Create layout
         layout = go.Layout(
             hovermode='closest',
             plot_bgcolor='white',
             autosize=True,
-            height=650
+            height=550
         )
 
-        # Create figure
         fig = go.Figure(data=[scatter], layout=layout)
 
-        # Add annotations for clarity
         fig.update_layout(
             annotations=[
                 dict(

@@ -9,7 +9,7 @@ import numpy as np  # Add this import for NumPy
 @pytest.fixture
 def mock_api_service():
     mock = MagicMock(spec=DatasetApiService)
-    mock.fetch_ds_ids.return_value = ["GSE12345", "GSE67890"]
+    mock.fetch_ds_ids.return_value = {"PAPER_ID": ["GSE12345", "GSE67890"]}
     mock.fetch_ds_details.return_value = {
         "GSE12345": {"title": "Dataset 1", "summary": "Summary 1", "taxon": "Human", "gdstype": "Expression"},
         "GSE67890": {"title": "Dataset 2", "summary": "Summary 2", "taxon": "Mouse", "gdstype": "Genomic"},
@@ -59,8 +59,8 @@ def test_set_ds_data_dict(pubmed_ds_controller):
 
 
 def test_get_ds_ids(pubmed_ds_controller):
-    ds_ids = pubmed_ds_controller._get_ds_ids()
-    assert ds_ids == ["GSE12345", "GSE67890"]
+    ds_dict = pubmed_ds_controller._get_ds_ids()
+    assert ds_dict == {"PAPER_ID": ["GSE12345", "GSE67890"]}
 
 
 def test_compute_ds_vectors(pubmed_ds_controller):

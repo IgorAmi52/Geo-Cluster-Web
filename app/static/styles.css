@@ -3,15 +3,21 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  }
-  
-  body {
+}
+
+body {
     line-height: 1.6;
-  }
-  
-  /* dash_custom.css */
-  .modal {
-    display: block;
+}
+
+#dashboard-container {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#modal-container {
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -19,157 +25,210 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-    animation: fadeIn 0.3s;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: 5% 10%;
-    height: 80%;
-    padding: 0;
-    width: 80%;
-    max-width: 1200px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    overflow: auto;
-    animation: slideIn 0.3s;
-    position: absolute;
-  }
-  
-  @keyframes slideIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  
-  .modal-content h3 {
-    color: #2c3e50;
-    margin: 0;
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-  
-  /* Close button styling */
-  #close-popup {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #aaa;
-    cursor: pointer;
-    line-height: 1;
-    z-index: 10;
-    transition: color 0.2s;
-  }
-  
-  #close-popup:hover {
-    color: #3498db;
-  }
-  
-  .popup-header {
-    background-color: #f8f9fa;
-    padding: 15px 10px;
-    border-bottom: 1px solid #e9ecef;
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-  
- 
-  .data-row {
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.modal-hidden {
+    display: none !important;
+}
+
+.modal-visible {
+    display: flex !important;
+}
+
+#modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 0px;
+}
+
+.modal-close:hover {
+    color: #555;
+}
+
+.modal-body {
+    margin-top: 10px;
+}
+
+.modal-title {
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.data-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.data-label {
+    font-weight: bold;
+    width: 120px;
+    color: #666;
+}
+
+.data-value {
+    flex: 1;
+}
+
+.last-row {
+    border-bottom: none;
+}
+
+.modal-organism {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    padding: 20px;
+}
+
+.modal-references-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    border: none;
+    padding-bottom: 5px;
+}
+
+.modal-references {
+    max-height: 200px;
+    background-color: #f9f9f9;
+    padding-left:5px;
+    padding-right:5px;
+}
+.modal-references-items{
+  max-height: 200px;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding-bottom:5px;
+  white-space: nowrap;
+  scrollbar-color: #ccc #f9f9f9;
+}
+.modal-references-items::-webkit-scrollbar {
+  width: 2px;  
+  height: 2px;
+}
+
+.modal-references-items::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.modal-references-items::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+}
+
+.modal-references a {
+    display: inline-block;
+    color: #3498db;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.modal-references a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #modal-content {
+        width: 90%;
+    }
+}
+
+.data-row {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #f0f0f0;
-  }
-  
-  .data-label {
+}
+
+.data-label {
     display: inline-block;
     width: 150px;
     font-weight: 500;
     color: #7f8c8d;
-  }
-  
-  .data-value {
+}
+
+.data-value {
     font-weight: 600;
     color: #2c3e50;
-  }
-  
-  .data-section {
-    margin-top: 20px;
-  }
-  
-  .data-section h4 {
-    color: #3498db;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .protein-info p {
-    margin: 5px 0;
-    color: #2c3e50;
-    font-size: 0.9rem;
-  }
-  
-  /* Dashboard container */
-  .dashboard {
+}
+
+.dashboard {
     max-width: 1200px;
     margin: 2rem auto;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
-  }
-  
-  /* Header styles */
-  .dashboard-header {
+}
+
+.dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #e9ecef;
     margin-bottom: 1.5rem;
-  }
-  
-  .dashboard-title {
+}
+
+.dashboard-title {
     font-size: 1.8rem;
     font-weight: 600;
     color: #1a365d;
     margin-bottom: 0.3rem;
-  }
-  
-  .dashboard-subtitle {
+}
+
+.dashboard-subtitle {
     font-size: 1rem;
     color: #64748b;
     font-weight: 400;
-  }
-  
-  /* Plot container */
-  .plot-container {
+}
+
+.plot-container {
     position: relative;
     width: 100%;
-    height: 65vh;
-    min-height: 500px;
+    height: 650px;
+    min-height: 600px;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1.5rem;
-  }
-  
-  .dash-frame {
+}
+
+.dash-frame {
     width: 100%;
-    height: 100%;
+    height: 650px;
     border: none;
-  }
-  
-  /* Plot description */
-  .plot-description {
+}
+
+.plot-description {
     padding: 1rem;
     background-color: #f8fafc;
     border-radius: 6px;
@@ -177,65 +236,47 @@
     font-size: 0.95rem;
     line-height: 1.5;
     border-left: 4px solid #3498db;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 992px) {
+}
+
+@media (max-width: 992px) {
     #popup-content-details {
         flex-direction: column;
     }
-    
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .dashboard {
         margin: 1rem;
         padding: 1rem;
     }
-    
+
     .dashboard-header {
         flex-direction: column;
         align-items: flex-start;
     }
-    
-    .dashboard-header svg {
-        margin-top: 1rem;
-    }
-    
+
     .dashboard-title {
         font-size: 1.5rem;
     }
-    
+
     .plot-container {
         height: 65vh;
         min-height: 400px;
     }
-    
+
     .modal-content {
         width: 95%;
         margin: 5% auto;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .popup-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
+}
+
+@media (max-width: 480px) {
     .data-label, .data-value {
         display: block;
         width: 100%;
     }
-    
+
     .data-value {
         margin-top: 5px;
     }
-  }
-
-  #graph-selection-heading {
-    font-size: 18px; /* Slightly smaller font size */
-    font-weight: normal; /* Reduced boldness */
-    color: #333;
-    margin-bottom: 20px;
 }

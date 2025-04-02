@@ -22,3 +22,7 @@ class ApiService:
             return response.json()
         else:
             response.raise_for_status()
+
+    def uses_api_key(self):
+        """Check if the API service uses an API key."""
+        return True if self.api_key is not None else False

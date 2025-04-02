@@ -22,7 +22,10 @@ class PubmedDSController:
         pass  # Prevent re-initialization
 
     def _get_ds_ids(self):
-        """Fetch dataset IDs linked to PubMed articles."""
+        """Fetch dataset IDs linked to PubMed articles.
+        Returns:dict
+            {paper_id: ds_ids} - Paper IDs mapped to dataset IDs
+        """
         fr = FileReader(PMIDs_CONFIG.DATA_FILE_PATH)
         page_ids = fr.read_lines()
         return self.api_service.fetch_ds_ids(page_ids)
@@ -75,3 +78,9 @@ class PubmedDSController:
             vectors)  # Reduce dimensions
 
         return [{"id": ds_id, "value": value.tolist()} for ds_id, value in zip(ds_ids, reduced_values)]
+
+    def get_ds_data_by_id(self, ds_id):
+        """Fetch dataset details by ID."""
+        if self.__ds_data is None:
+            self.set_ds_data_dict()
+        return self.__ds_data.get(ds_id, None)

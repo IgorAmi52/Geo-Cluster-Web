@@ -4,5 +4,6 @@ from .dataset_api_service import DatasetApiService
 from .tfidf_service import TfIdfService
 from .plot_factory_service import PlotFactory
 from .clustering_service import ClusteringService
+from .paper_api_service import PaperApiService
 __all__ = ['ApiService', 'FileReader',
-           'DatasetApiService', 'TfIdfService', 'PlotFactory', 'ClusteringService']
+           'DatasetApiService', 'TfIdfService', 'PlotFactory', 'ClusteringService', 'PaperApiService']

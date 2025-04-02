@@ -33,7 +33,6 @@ class TfIdfService:
     def compute_vectors(self, ds_data):
         """ Compute TF-IDF vectors for all datasets in parallel """
         dataset_ids = list(ds_data.keys())
-        # Use ThreadPoolExecutor to preprocess text in parallel
         with concurrent.futures.ThreadPoolExecutor() as executor:
             dataset_descriptions = list(executor.map(
                 self.generate_ds_description, ds_data.values()))
